@@ -1,5 +1,6 @@
 import NavMenu from './Components/NavMenu/NavMenu';
 import Header from './Components/Header/Header';
+import MainScreen from './Components/MainScreen/MainScreen';
 
 export default function App() {
 
@@ -7,6 +8,7 @@ export default function App() {
     <div className='page'>
       <Header />
       <NavMenu />
+      <MainScreen />
     </div>
   );
 

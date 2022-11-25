@@ -1,9 +1,14 @@
-import './Header.css'
+import Utente from './Utente/Utente';
+import Bottoni from './Bottoni/Bottoni';
+import './header.css'
 
 export default function Headers() {
 
     return(
-        <div className='header'> Header </div>
+        <div className='header'>
+            <Utente />
+            <Bottoni />
+        </div>
     );
 
 }

@@ -1,4 +1,4 @@
-import './BtnHomepage.css';
+import './btnHomepage.css';
 
 export default function BtnHomepage() {
 

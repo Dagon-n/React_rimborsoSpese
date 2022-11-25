@@ -1,0 +1,22 @@
+.containerBottoni {
+    display: inline;
+    float: right;
+    margin-right: 3%;
+}
+
+.btnProva {
+    background-color: rgb(255, 255, 255, 0.1);
+    color: rgb(64, 107, 206);
+    font-size: 17px;
+    padding: 5px;
+    width: 70px;
+    border: 3px solid rgb(64, 107, 206);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btnProva:hover {
+    background-color: rgb(64, 107, 206);
+    color: white;
+    font-weight: bold;
+}

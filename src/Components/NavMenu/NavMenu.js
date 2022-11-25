@@ -1,5 +1,5 @@
 import BtnHomepage from './BtnHomepage/BtnHomepage';
-import './NavMenu.css';
+import './navMenu.css';
 
 export default function NavMenu() {
 

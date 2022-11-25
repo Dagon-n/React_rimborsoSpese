@@ -1,5 +1,8 @@
 .navMenu {
     display: block;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
     font-size: 20px;
     text-align: center;
     width: 10%;
@@ -8,5 +11,13 @@
     margin: 0;
     padding: 50px 15px;
     background-color: lightgray;
-    border: solid 3px red;
+    /* border: solid 2px red; */
+}
+
+@media (max-width: 450px) {
+
+    .navMenu{
+        width: 40%;
+    }
+
 }

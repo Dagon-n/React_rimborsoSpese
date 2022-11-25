@@ -2,11 +2,19 @@
     margin: 0 auto;
     border: 2px solid black;
     border-radius: 20px;
-    width: 100px;
+    width: 80%;
 }
 
 .btnHomepage:hover {
     background-color: black;
     color: white;
     cursor: pointer;
+}
+
+@media (max-width: 450px) {
+
+    .btnHomepage{
+        width: 100%;
+    }
+
 }

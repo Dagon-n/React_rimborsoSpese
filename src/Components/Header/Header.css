@@ -1,0 +1,7 @@
+.header {
+    /* border: 2px solid blue; */
+    font-size: 20px;
+    background-color: lightgray;
+    padding: 20px;
+    position: static;
+}

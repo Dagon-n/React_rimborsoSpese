@@ -5,11 +5,10 @@
     overflow-x: hidden;
     font-size: 20px;
     text-align: center;
-    width: 9%;
+    width: 90px;
     height: 100vh;
     list-style-type: none;
     margin: 0;
     padding: 50px 15px;
     background-color: lightgray;
-    border: solid 2px red;
 }

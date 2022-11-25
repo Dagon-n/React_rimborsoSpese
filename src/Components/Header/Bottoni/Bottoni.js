@@ -4,7 +4,7 @@ export default function Bottoni() {
 
     return(
         <div className='containerBottoni' >
-            <button className="btnProva">+ dati</button>
+            <button className="btnAggiungiDati">+ dati</button>
         </div>
     );
 

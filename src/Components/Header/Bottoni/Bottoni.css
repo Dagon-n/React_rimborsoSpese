@@ -1,10 +1,10 @@
 .containerBottoni {
     display: inline;
+    margin-right: 3%; 
     float: right;
-    margin-right: 3%;
 }
 
-.btnProva {
+.btnAggiungiDati {
     background-color: rgb(255, 255, 255, 0.1);
     color: rgb(64, 107, 206);
     font-size: 17px;
@@ -15,7 +15,7 @@
     cursor: pointer;
 }
 
-.btnProva:hover {
+.btnAggiungiDati:hover {
     background-color: rgb(64, 107, 206);
     color: white;
     font-weight: bold;

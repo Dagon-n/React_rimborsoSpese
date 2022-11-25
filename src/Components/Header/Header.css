@@ -2,5 +2,8 @@
     font-size: 20px;
     background-color: lightgray;
     padding: 20px;
-    position: static;
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }

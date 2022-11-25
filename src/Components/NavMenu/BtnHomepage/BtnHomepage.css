@@ -10,11 +10,3 @@
     color: white;
     cursor: pointer;
 }
-
-@media (max-width: 450px) {
-
-    .btnHomepage{
-        width: 100%;
-    }
-
-}

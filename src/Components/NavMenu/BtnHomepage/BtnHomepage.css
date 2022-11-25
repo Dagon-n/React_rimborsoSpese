@@ -1,0 +1,12 @@
+.btnHomepage {
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 100px;
+}
+
+.btnHomepage:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

@@ -1,5 +1,16 @@
-body {
+/*
+Viewport height prende l'altezza totale dello schermo di chi sta guardando (teoricamente)
+  link: 
+    https://stackoverflow.com/questions/7049875/why-doesnt-height-100-work-to-expand-divs-to-the-screen-height
+*/
+
+html, body{
+  height: 100vh; /* Viewport height */
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

@@ -1,11 +1,13 @@
-import './Bottoni.css'
+import BottoneAggiungiDati from "./BottoneAggiungiDato"
+import BottoneVisualizzaTabella from "./BottoneVisualizzaTabella"
 
 export default function Bottoni() {
 
-    return(
-        <div className='containerBottoni' >
-            <button className="btnAggiungiDati">+ dati</button>
+    return (
+        <div className="containerBottoni">
+            <BottoneAggiungiDati />
+            <BottoneVisualizzaTabella />           
         </div>
-    );
+    )
 
 }

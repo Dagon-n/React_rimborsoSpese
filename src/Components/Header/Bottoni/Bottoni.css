@@ -1,7 +1,7 @@
 .containerBottoni {
     display: inline;
-    margin-right: 3%; 
     float: right;
+    width: auto;
 }
 
 .btnAggiungiDati {
@@ -15,8 +15,29 @@
     cursor: pointer;
 }
 
+button {
+    margin-left: 10px;
+}
+
 .btnAggiungiDati:hover {
     background-color: rgb(64, 107, 206);
+    color: white;
+    font-weight: bold;
+}
+
+.btnVisualizzaTabella {
+    background-color: rgb(255, 255, 255, 0.1);
+    color: rgb(255, 165, 0);
+    font-size: 17px;
+    padding: 5px;
+    width: 70px;
+    border: 3px solid rgb(255, 165, 0);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btnVisualizzaTabella:hover {
+    background-color: rgb(255, 165, 0);
     color: white;
     font-weight: bold;
 }

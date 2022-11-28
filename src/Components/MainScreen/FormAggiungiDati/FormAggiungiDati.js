@@ -25,7 +25,7 @@ export default function FormAggiungiDati(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('data: ' + data, 'tipoSpesa: ' + tipoSpesa, 'importo: ' + importo)
+        console.log('data: ' + data, 'tipoSpesa: ' + tipoSpesa, 'ricevuta: ' + ricevuta,'importo: ' + importo)
         array.push({'data':data, 'tipoSpesa':tipoSpesa, 'importo':importo})
         console.log(array)
     }
@@ -33,7 +33,9 @@ export default function FormAggiungiDati(props) {
 
     return (
         <div className='containerForm'>
-            <form className="formAggiungiDati" onSubmit={handleSubmit}>
+            <form className="formAggiungiDati" onSubmit={handleSubmit} required>
+
+                <h3 className='formTitolo'>Aggiungi nuovi dati</h3>
 
                 <input type="date" onChange={handleDataChange}></input><br></br>
                 
@@ -45,9 +47,11 @@ export default function FormAggiungiDati(props) {
 
                 <input type="text" onChange={handleImportoChange}></input><br></br>
 
-                <label htmlFor='ricevuta'>Si ha la ricevuta?</label>
-                    <input type="radio" name='ricevuta' id="ricevuta"></input>
-                    <input type="radio" name='ricevuta' id="ricevuta"></input><br></br>
+                <label>Hai ancora la ricevuta?</label>
+                    <input type="radio" name='ricevuta' id='si' onChange={()=>setRicevuta('si')} defaultChecked />
+                    <label htmlFor='si'>SI</label>
+                    <input type="radio" name='ricevuta' id='no' onChange={()=>setRicevuta('no')} />
+                    <label htmlFor='no'>NO</label><br></br>
 
                 <input type='submit' value='submit' />
     

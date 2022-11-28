@@ -37,23 +37,26 @@ export default function FormAggiungiDati(props) {
 
                 <h3 className='formTitolo'>Aggiungi nuovi dati</h3>
 
+                <label>Data</label><br></br>
                 <input type="date" onChange={handleDataChange}></input><br></br>
                 
+                <label>Tipo di spesa</label><br></br>
                 <select onChange={handleTipoSpesaChange}>
                     <option value="taxi">taxi</option>
                     <option value="treno">treno</option>
                     <option value="autobus">autobus</option>
                 </select><br></br>
 
+                <label>Importo</label><br></br>
                 <input type="text" onChange={handleImportoChange}></input><br></br>
 
-                <label>Hai ancora la ricevuta?</label>
+                <label>Hai ancora la ricevuta?</label><br></br>
                     <input type="radio" name='ricevuta' id='si' onChange={()=>setRicevuta('si')} defaultChecked />
                     <label htmlFor='si'>SI</label>
                     <input type="radio" name='ricevuta' id='no' onChange={()=>setRicevuta('no')} />
                     <label htmlFor='no'>NO</label><br></br>
 
-                <input type='submit' value='submit' />
+                <input type='submit' value='invia' className='submitForm'/>
     
             </form>
         </div> 

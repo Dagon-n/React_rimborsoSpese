@@ -4,11 +4,12 @@ import FormAggiungiDati from './FormAggiungiDati/FormAggiungiDati';
 import FormEditaDati from './FormEditaDati/FormEditaDati';
 import './mainScreen.css'
 
-import { useState } from 'react';
+import { useContext } from 'react';
+import { ScreenStatusContext } from '../../Context/ScreenStatusContext';
 
 export default function MainScreen() {
 
-    const [screen, setScreen] = useState('paginaVuota')
+    const { screenState, setScreenState } = useContext(ScreenStatusContext)
     /*  
         Ora il default è tableVuota perchè non ci sono dati da mostrare
         su una tabella, nel caso invece ci fossero bisognerebbe mettere
@@ -18,10 +19,10 @@ export default function MainScreen() {
 
     return (
         <div className='mainScreen'>
-            { screen == 'paginaVuota' && <PaginaVuota /> }
-            { screen == 'tableDati' && <TableDati /> }
-            { screen == 'formAggiungiDati' && <FormAggiungiDati /> }
-            { screen == 'formEditaDati' && <FormEditaDati /> }
+            { screenState === 'paginaVuota' && <PaginaVuota /> }
+            { screenState === 'tableDati' && <TableDati /> }
+            { screenState === 'formAggiungiDati' && <FormAggiungiDati /> }
+            { screenState === 'formEditaDati' && <FormEditaDati /> }
         </div>
     );
 

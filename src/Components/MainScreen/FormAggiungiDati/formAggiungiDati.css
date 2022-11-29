@@ -5,13 +5,33 @@
 
 .formAggiungiDati{
     border-radius: 10px;
-    background-color: rgb(211, 211, 211, 0.6);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
+    background-color: rgb(238, 238, 238);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
-    padding: 2%;
+    padding: 5%;
     width: 80%;
     margin: 0 auto;
-    height: 300px;
+    height: 100%;
+}
+
+.formAggiungiDati > label {
+    color: rgb(0, 0, 0, 0.6);
+    float: left;
+    margin-left: 25%;
+}
+
+.formDate, .formSelect, .formText  {
+    width: 50%;
+    padding: 2px;
+    margin-bottom: 10px;
+}
+
+.containerRadioButtons > #no {
+    margin-left: 10%;
+}
+
+.containerRadioButtons > label {
+    color: rgb(0, 0, 0, 0.6);
 }
 
 .submitForm {

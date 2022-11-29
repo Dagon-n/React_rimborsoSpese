@@ -1,14 +1,14 @@
 import './formAggiungiDati.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ScreenStatusContext } from '../../../Context/ScreenStatusContext'
 
 export default function FormAggiungiDati(props) {
 
-    const array = [];
-
-    const [data, setData] = useState('')
-    const [tipoSpesa, setTipoSpesa] = useState('')
-    const [ricevuta, setRicevuta] = useState('')
-    const [importo, setImporto] = useState('')
+    const [ data, setData ] = useState('')
+    const [ tipoSpesa, setTipoSpesa ] = useState('')
+    const [ ricevuta, setRicevuta ] = useState('')
+    const [ importo, setImporto ] = useState('')
+    const { screenState, setScreenState } = useContext(ScreenStatusContext)
 
     const handleDataChange = (e) => {
         setData(e.target.value)
@@ -23,11 +23,24 @@ export default function FormAggiungiDati(props) {
         setImporto(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    async function handleSubmit (e) {
         e.preventDefault()
         console.log('data: ' + data, '\ntipoSpesa: ' + tipoSpesa, '\nricevuta: ' + ricevuta, '\nimporto: ' + importo)
-        array.push({'data':data, 'tipoSpesa':tipoSpesa, 'ricevuta':ricevuta, 'importo':importo})
-        console.log(array)
+        let spesa = [{'data':data, 'tipoSpesa':tipoSpesa, 'ricevuta':ricevuta, 'importo':importo}];
+
+        let response = await fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/Spese', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(spesa)
+        });
+
+        let result = await response.json()
+        console.log(result)
+
+        // alert('Spesa aggiunta!')
+        setScreenState('tableDati')
     }
 
 
@@ -35,7 +48,7 @@ export default function FormAggiungiDati(props) {
         <div className='containerForm'>
             <form className="formAggiungiDati" onSubmit={handleSubmit} required>
 
-                <h3 className='formTitolo'>Aggiungi nuovi dati</h3>
+                <h3 className='formTitolo'>Aggiungi nuova spesa</h3>
 
                 <label>Data</label><br></br>
                 <input type="date" onChange={handleDataChange} className="formDate"></input><br></br>

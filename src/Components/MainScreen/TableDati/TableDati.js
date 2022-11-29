@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import './tableDati.css'
 
 export default function TableDati() {
 
@@ -11,19 +12,30 @@ export default function TableDati() {
     }, [] )
 
     return (
-        <div className="containerSpese">
-            <div>
-                {dati.map( (x) =>
-                    <ul key={x.id}>
-                        <li> numero {x.id} </li>
-                        <li> {x[0].data} </li>
-                        <li> {x[0].importo} </li>
-                        <li> {x[0].ricevuta} </li>
-                        <li> {x[0].tipoSpesa} </li>
-                    </ul>
-                )}
-            </div>
-        </div>
+        <table className="mainTable">
+            <thead>
+                <tr>
+                    <th>N.</th>
+                    <th>Data</th>
+                    <th>Importo</th>
+                    <th>Ricevuta</th>
+                    <th>Tipo di Spesa</th>
+                </tr>
+            </thead>
+            <tbody>
+                {dati.map((obj) => {
+                    return(
+                        <tr key={obj.id}>
+                            <td>{obj.id}</td>
+                            <td>{obj[0].data}</td>
+                            <td>{obj[0].importo} €</td>
+                            <td>{obj[0].ricevuta}</td>
+                            <td>{obj[0].tipoSpesa}</td>
+                        </tr>
+                    )
+                })}
+            </tbody>
+        </table>
     )
 
 }

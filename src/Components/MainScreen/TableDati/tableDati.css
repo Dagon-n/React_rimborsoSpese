@@ -1,0 +1,22 @@
+.mainTable {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+    background-color: lightgray;
+}
+
+.mainTable th {
+    text-align: left;
+    background-color: rgb(165, 199, 255);
+}
+
+.mainTable td, .mainTable th {
+    border: 2px solid #ddd;
+    padding: 8px;
+}
+
+.mainTable td {
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px 40px;
+}

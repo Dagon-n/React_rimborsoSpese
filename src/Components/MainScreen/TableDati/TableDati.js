@@ -11,16 +11,18 @@ export default function TableDati() {
     }, [] )
 
     return (
-        <div>
-            { dati.map( (x) =>
-                <ul key={x.id}>
-                    <li> numero {x.id} </li>
-                    <li> {x[0].data} </li>
-                    <li> {x[0].importo} </li>
-                    <li> {x[0].ricevuta} </li>
-                    <li> {x[0].tipoSpesa} </li>
-                </ul>
-            )}
+        <div className="containerSpese">
+            <div>
+                {dati.map( (x) =>
+                    <ul key={x.id}>
+                        <li> numero {x.id} </li>
+                        <li> {x[0].data} </li>
+                        <li> {x[0].importo} </li>
+                        <li> {x[0].ricevuta} </li>
+                        <li> {x[0].tipoSpesa} </li>
+                    </ul>
+                )}
+            </div>
         </div>
     )
 

@@ -25,8 +25,8 @@ export default function FormAggiungiDati(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('data: ' + data, 'tipoSpesa: ' + tipoSpesa, 'ricevuta: ' + ricevuta,'importo: ' + importo)
-        array.push({'data':data, 'tipoSpesa':tipoSpesa, 'importo':importo})
+        console.log('data: ' + data, '\ntipoSpesa: ' + tipoSpesa, '\nricevuta: ' + ricevuta, '\nimporto: ' + importo)
+        array.push({'data':data, 'tipoSpesa':tipoSpesa, 'ricevuta':ricevuta, 'importo':importo})
         console.log(array)
     }
 
@@ -41,7 +41,8 @@ export default function FormAggiungiDati(props) {
                 <input type="date" onChange={handleDataChange}></input><br></br>
                 
                 <label>Tipo di spesa</label><br></br>
-                <select onChange={handleTipoSpesaChange}>
+                <select onChange={handleTipoSpesaChange} defaultValue="scegli">
+                    <option disabled value="scegli">Scegli</option>
                     <option value="taxi">taxi</option>
                     <option value="treno">treno</option>
                     <option value="autobus">autobus</option>
@@ -51,7 +52,7 @@ export default function FormAggiungiDati(props) {
                 <input type="text" onChange={handleImportoChange}></input><br></br>
 
                 <label>Hai ancora la ricevuta?</label><br></br>
-                    <input type="radio" name='ricevuta' id='si' onChange={()=>setRicevuta('si')} defaultChecked />
+                    <input type="radio" name='ricevuta' id='si' onChange={()=>setRicevuta('si')} />
                     <label htmlFor='si'>SI</label>
                     <input type="radio" name='ricevuta' id='no' onChange={()=>setRicevuta('no')} />
                     <label htmlFor='no'>NO</label><br></br>

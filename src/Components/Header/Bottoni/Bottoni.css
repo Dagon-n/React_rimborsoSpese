@@ -4,40 +4,38 @@
     width: auto;
 }
 
-.btnAggiungiDati {
-    background-color: rgb(255, 255, 255, 0.1);
-    color: rgb(64, 107, 206);
-    font-size: 17px;
-    padding: 5px;
-    width: 70px;
-    border: 3px solid rgb(64, 107, 206);
-    border-radius: 10px;
-    cursor: pointer;
-}
-
 button {
     margin-left: 10px;
 }
 
-.btnAggiungiDati:hover {
+.btnAggiungiDati {
     background-color: rgb(64, 107, 206);
     color: white;
+    font-size: 15px;
     font-weight: bold;
+    padding: 4%;
+    width: 70px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btnAggiungiDati:hover {
+    background-color: rgb(0, 80, 180);
 }
 
 .btnVisualizzaTabella {
-    background-color: rgb(255, 255, 255, 0.1);
-    color: rgb(255, 165, 0);
-    font-size: 17px;
-    padding: 5px;
+    background-color: rgb(230, 150, 0);
+    color:white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4%;
     width: 70px;
-    border: 3px solid rgb(255, 165, 0);
-    border-radius: 10px;
+    border: none;
+    border-radius: 50px;
     cursor: pointer;
 }
 
 .btnVisualizzaTabella:hover {
-    background-color: rgb(255, 165, 0);
-    color: white;
-    font-weight: bold;
+    background-color: rgb(200, 120, 0);
 }

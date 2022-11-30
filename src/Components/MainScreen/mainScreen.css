@@ -3,5 +3,7 @@
     margin-left: 110px;
     margin-top: 5px;
     padding: 1%;
-    /* height: 100vh; */
+    background-color: rgba(248,249,249,255);
+    height: 100vh;
+    border-radius: 10px;
 }

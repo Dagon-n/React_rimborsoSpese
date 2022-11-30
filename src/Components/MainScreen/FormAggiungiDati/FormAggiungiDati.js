@@ -1,6 +1,14 @@
-import './formAggiungiDati.css'
 import { useState, useContext } from 'react'
 import { ScreenStatusContext } from '../../../Context/ScreenStatusContext'
+
+import FormTitle from './Parts/FormTitle'
+import FormData from './Parts/FormData'
+import FormTipoSpesa from './Parts/FormTipoSpesa'
+import FormImporto from './Parts/FormImporto'
+import FormButtonSubmit from './Parts/FormButtonSubmit'
+import FormRadioRicevuta from './Parts/FormRadioRicevuta'
+
+import './formAggiungiDati2.css'
 
 export default function FormAggiungiDati(props) {
 
@@ -39,7 +47,6 @@ export default function FormAggiungiDati(props) {
         let result = await response.json()
         console.log(result)
 
-        // alert('Spesa aggiunta!')
         setScreenState('tableDati')
     }
 
@@ -48,31 +55,12 @@ export default function FormAggiungiDati(props) {
         <div className='containerForm'>
             <form className="formAggiungiDati" onSubmit={handleSubmit} required>
 
-                <h3 className='formTitolo'>Aggiungi nuova spesa</h3>
-
-                <label>Data</label><br></br>
-                <input type="date" onChange={handleDataChange} className="formDate"></input><br></br>
-                
-                <label>Tipo di spesa</label><br></br>
-                <select onChange={handleTipoSpesaChange} defaultValue="scegli" className='formSelect'>
-                    <option disabled value="scegli">Scegli</option>
-                    <option value="taxi">taxi</option>
-                    <option value="treno">treno</option>
-                    <option value="autobus">autobus</option>
-                </select><br></br>
-
-                <label>Importo</label><br></br>
-                <input type="text" onChange={handleImportoChange} className="formText"></input><br></br>
-
-                <label>Hai ancora la ricevuta?</label><br></br>
-                <div className='containerRadioButtons'>
-                    <input type="radio" name='ricevuta' id='si' onChange={()=>setRicevuta('si')} />
-                    <label htmlFor='si'>SI</label>
-                    <input type="radio" name='ricevuta' id='no' onChange={()=>setRicevuta('no')} />
-                    <label htmlFor='no'>NO</label><br></br>
-                </div>
-
-                <button type='submit' className='submitForm'>Invia</button>
+                <FormTitle />
+                <FormData handler={ handleDataChange }/>
+                <FormTipoSpesa handler={ handleTipoSpesaChange } />
+                <FormImporto handler={ handleImportoChange } />
+                <FormRadioRicevuta handler={ handleRicevutaChange } />
+                <FormButtonSubmit />
     
             </form>
         </div> 

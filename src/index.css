@@ -5,7 +5,7 @@ Viewport height prende l'altezza totale dello schermo di chi sta guardando (teor
 */
 
 html, body{
-  /* height: 100vh; Viewport height */
+  height: 100vh;
   margin: 0;
   padding: 0;
   overflow-y: hidden;

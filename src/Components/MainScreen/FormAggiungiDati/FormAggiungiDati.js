@@ -8,7 +8,7 @@ import FormImporto from './Parts/FormImporto'
 import FormButtonSubmit from './Parts/FormButtonSubmit'
 import FormRadioRicevuta from './Parts/FormRadioRicevuta'
 
-import './formAggiungiDati2.css'
+import './formAggiungiDati.css'
 
 export default function FormAggiungiDati(props) {
 

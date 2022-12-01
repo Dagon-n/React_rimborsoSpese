@@ -7,13 +7,14 @@ import { useState, useEffect } from 'react';
 export default function App() {
 
   const [ screenState, setScreenState ] = useState('paginaVuota')
-  const [ utenti, setUtenti ] = useState('');
 
+  const [ utenti, setUtenti ] = useState([]);
   useEffect( () =>{
     fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti')
     .then((response) => response.json())
     .then((json) => setUtenti(json));
-  }, [screenState])
+    console.log(utenti)
+  }, [])
 
   return (
     <div className='page'>

@@ -1,17 +1,28 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import './tableDati.css'
 
 export default function TableDati() {
 
     const [ dati, setDati ] = useState([])
 
+    // async function handleSubmit(e) {
+    // e.preventDefault()
+    // await fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/Spese')
+    //         .then((response) => response.json())
+    //         .then((json) => setDati(json));
+    // };
+
     useEffect( () => {
         fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/Spese')
-        .then((response) => response.json())
-        .then((json) => setDati(json));
+            .then((response) => response.json())
+            .then((json) => setDati(json));
     }, [] )
 
+
+    
+    console.log(dati)
     return (
+        <>
         <table className="mainTable">
             <thead>
                 <tr>
@@ -36,6 +47,7 @@ export default function TableDati() {
                 })}
             </tbody>
         </table>
+        </>
     )
 
 }

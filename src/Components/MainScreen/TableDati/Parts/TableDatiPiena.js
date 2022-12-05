@@ -1,44 +1,61 @@
-import { useState } from 'react'
+import React, { Fragment, useState } from 'react'
+import ReadOnlyRow from './ReadOnlyRow'
+import EditableRow from './EditableRow'
 import './tableDatiPiena.css'
 
 export default function TableDatiPiena(props) {
 
-    const [ statoRiga, setStatoRiga ] = useState('salvata')
+    const [ editFormData, setEditFormData ] = useState({
+        data: '',
+        importo: '',
+        ricevuta: '',
+        tipoSpesa: ''
+    })
+    const handleEditFormChange = (event) => {
+
+    }
+
+    const [ editRow, setEditRow ] = useState(null)
+    const handleEditClick = (event, obj) => {
+        event.preventDefault()
+        setEditRow(obj.id)
+    }
 
     return (
         <>
         <table className="mainTable">
             <thead>
                 <tr>
-                    <th>N.</th>
                     <th>Data</th>
                     <th>Importo</th>
                     <th>Ricevuta</th>
                     <th>Tipo di Spesa</th>
-                    <th>edit</th>
-                    <th>delete</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                {
-                    props.spese.map((obj) => {
+                {props.spese.map((obj) => {
                     return(
-                        <tr key={obj.id}>
-                            <td>{obj.id}</td>
-                            <td>{obj[0].data}</td>
-                            <td>{obj[0].importo} €</td>
-                            <td>{obj[0].ricevuta}</td>
-                            <td>{obj[0].tipoSpesa}</td>
-                            <td>
-                                <button onClick={ () => edit(obj.id, obj[0]) }>edit</button>
-                            </td>
-                            <td>/</td>
-                        </tr>
+                        <Fragment>
+                            { editRow === obj.id ? 
+                                <EditableRow 
+                                    key={obj.id} 
+                                    obj={obj}
+                                    setEditRow={setEditRow}
+                                />
+                                :
+                                <ReadOnlyRow 
+                                    key={obj.id} 
+                                    obj={obj} 
+                                    handleEditClick={handleEditClick}
+                                />
+                            }
+                        </Fragment>
                     )
-                    })  
+                })
                 }
                 <tr className="rigaTotale">
-                    <td></td>
                     <td>Totale</td>
                     <td className="cellaTotale" colSpan={2}>{ somma(props.spese) } €</td>
                     <td></td>
@@ -57,19 +74,4 @@ const somma = (array) => {
         return acc + parseInt(curr);
     }, 0 )
     return numeriSommati
-}
-
-const edit = (id, dati) => {
-
-    console.log(
-        'data:', dati.data + '\n',
-        'importo:', dati.importo + '\n',
-        'ricevuta:', dati.ricevuta + '\n',
-        'tipoSpesa:', dati.tipoSpesa + '\n',
-        'ID =>', id
-    )
-    return(
-        <p>prova</p>
-    )
-
 }

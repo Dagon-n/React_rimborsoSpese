@@ -9,7 +9,7 @@ export default function ReadOnlyRow({obj, handleEditClick}) {
             <td>
                 <button 
                     type="button"
-                    className="btnEditaRiga"
+                    className="btnEditaRigaTable"
                     onClick={(event) => handleEditClick(event, obj)}
                     >
                     edita

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './editTableRow.css'
 
 export default function EditableRow({obj, setEditRow}) {
 
@@ -54,8 +55,9 @@ export default function EditableRow({obj, setEditRow}) {
                     required='required' 
                     placeholder={ obj.data }
                     name='data'
-                    onChange={ handleDataChange }>
-                </input>
+                    className='dataEditTable'
+                    onChange={ handleDataChange }
+                />
             </td>
             <td>
                 <input 
@@ -63,11 +65,16 @@ export default function EditableRow({obj, setEditRow}) {
                     required='required' 
                     placeholder='inserisci un importo...'
                     name='importo'
-                    onChange={ handleImportoChange }>
-                </input>
+                    className="importoEditTable"
+                    onChange={ handleImportoChange }
+                />
             </td>
             <td>
-                <select onChange={ handleRicevutaChange } defaultValue='scegli'>
+                <select 
+                    onChange={ handleRicevutaChange } 
+                    defaultValue='scegli'
+                    className="selectEditTable"
+                    >
                 <option disabled value="scegli">Scegli</option>
                     <option value='si'>si</option>
                     <option value='no'>no</option>
@@ -79,13 +86,14 @@ export default function EditableRow({obj, setEditRow}) {
                     required='required' 
                     placeholder='inserisci un tipo di spesa...'
                     name='tipoSpesa'
+                    className="tipoSpesaEditTable"
                     onChange={ handleTipoSpesaChange }>
                 </input>
             </td>
             <td>
                 <button 
                     type="button"
-                    className="btnEditaRiga"
+                    className="btnSalvaRigaTable"
                     onClick={(event) => handlerDatiNuovi(event, setEditRow)}
                     >
                     salva
@@ -94,7 +102,7 @@ export default function EditableRow({obj, setEditRow}) {
             <td>
                 <button 
                     type="button"
-                    className="btnEditaRiga"
+                    className="btnAnnullaRigaTable"
                     onClick={(event) => annullaEdit(event, setEditRow)}
                     >
                     annulla

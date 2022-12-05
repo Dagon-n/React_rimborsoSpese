@@ -1,0 +1,7 @@
+.dataEditTable, .importoEditTable, .selectEditTable, .tipoSpesaEditTable {
+    color: black;
+}
+
+.btnSalvaRigaTable, .btnAnnullaRigaTable, .btnEditaRigaTable {
+    color: black;
+}

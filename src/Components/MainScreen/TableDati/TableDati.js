@@ -1,53 +1,29 @@
-import { useState, useEffect } from "react"
-import './tableDati.css'
+import TableDatiPiena from "./Parts/TableDatiPiena"
+import PaginaVuota from "../PaginaVuota/PaginaVuota"
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function TableDati() {
+export default function TableDati(props) {
 
-    const [ dati, setDati ] = useState([])
+  const [ spese, setSpese ] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+    const result = await axios(
+      'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese'
+    );
+      setSpese(result.data)
+    };
+      fetchData()
+  }, [])
 
-    // async function handleSubmit(e) {
-    // e.preventDefault()
-    // await fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/Spese')
-    //         .then((response) => response.json())
-    //         .then((json) => setDati(json));
-    // };
-
-    useEffect( () => {
-        fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/Spese')
-            .then((response) => response.json())
-            .then((json) => setDati(json));
-    }, [] )
-
-
-    
-    console.log(dati)
+  if(spese.length > 0) {
     return (
-        <>
-        <table className="mainTable">
-            <thead>
-                <tr>
-                    <th>N.</th>
-                    <th>Data</th>
-                    <th>Importo</th>
-                    <th>Ricevuta</th>
-                    <th>Tipo di Spesa</th>
-                </tr>
-            </thead>
-            <tbody>
-                {dati.map((obj) => {
-                    return(
-                        <tr key={obj.id}>
-                            <td>{obj.id}</td>
-                            <td>{obj[0].data}</td>
-                            <td>{obj[0].importo} €</td>
-                            <td>{obj[0].ricevuta}</td>
-                            <td>{obj[0].tipoSpesa}</td>
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table>
-        </>
+      <TableDatiPiena spese={ spese } />
     )
+  }else{
+    return(
+      <PaginaVuota />
+    )
+  }
 
 }

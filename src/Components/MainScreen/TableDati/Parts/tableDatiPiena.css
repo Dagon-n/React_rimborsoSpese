@@ -22,3 +22,9 @@
     background-color: white;
     padding: 15px 20px;
 }
+
+.rigaTotale > td {
+    font-size: 18px;
+    font-weight: bold;
+    background: transparent;
+}

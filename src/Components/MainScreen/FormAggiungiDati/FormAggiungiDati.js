@@ -36,7 +36,7 @@ export default function FormAggiungiDati(props) {
         console.log('data: ' + data, '\ntipoSpesa: ' + tipoSpesa, '\nricevuta: ' + ricevuta, '\nimporto: ' + importo)
         let spesa = [{'data':data, 'tipoSpesa':tipoSpesa, 'ricevuta':ricevuta, 'importo':importo}];
 
-        let response = await fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/Spese', {
+        let response = await fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8'

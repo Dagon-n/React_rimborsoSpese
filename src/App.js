@@ -3,18 +3,11 @@ import Header from './Components/Header/Header';
 import MainScreen from './Components/MainScreen/MainScreen';
 import { ScreenStatusContext } from './Context/ScreenStatusContext';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function App() {
 
-  const [ screenState, setScreenState ] = useState('paginaVuota')
-
-  const [ utenti, setUtenti ] = useState([]);
-  useEffect( () =>{
-    fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti')
-    .then((response) => response.json())
-    .then((json) => setUtenti(json));
-    console.log(utenti)
-  }, [])
+  const [ screenState, setScreenState ] = useState('formAggiungiDati')
 
   return (
     <div className='page'>

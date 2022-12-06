@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './editTableRow.css'
 
-export default function EditableRow({obj, setEditRow}) {
+export default function EditableRow({setEditRow}) {
 
     const [ data, setData ] = useState('')
     const [ tipoSpesa, setTipoSpesa ] = useState('')
@@ -53,7 +53,6 @@ export default function EditableRow({obj, setEditRow}) {
                 <input 
                     type='date' 
                     required='required' 
-                    placeholder={ obj.data }
                     name='data'
                     className='dataEditTable'
                     onChange={ handleDataChange }

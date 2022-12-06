@@ -13,6 +13,11 @@
     padding: 10px;
 }
 
+.mainTable th:hover {
+    color: black;
+    cursor: pointer;
+}
+
 .mainTable td, .mainTable th {
     border: 3px solid rgba(248,249,249,255);
     border-radius: 15px;

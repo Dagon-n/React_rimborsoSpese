@@ -8,7 +8,8 @@ export default function TableDatiPiena(props) {
     const [ editRow, setEditRow ] = useState(null)
     const handleEditClick = (event, index) => {
         event.preventDefault()
-        setEditRow(index)
+        console.log('riga premuta ->', (index))
+        console.log(editRow)
     }
 
     const [ dati, setDati ] = useState([])
@@ -17,7 +18,6 @@ export default function TableDatiPiena(props) {
         props.spese.map((x) => spese.push(x[0]))
         setDati(spese)
     }, [] )
-    console.log(dati)
 
     const [order, setOrder] = useState('ASC')
     const sorting = (col) => {
@@ -55,9 +55,8 @@ export default function TableDatiPiena(props) {
                 {dati.map((obj, index) => {
                     return(
                         <Fragment key={index}>
-                            { editRow === {index} ? 
-                                <EditableRow 
-                                    obj={obj}
+                            { editRow === index ? 
+                                <EditableRow
                                     index={index}
                                     setEditRow={setEditRow}
                                 />
@@ -65,7 +64,8 @@ export default function TableDatiPiena(props) {
                                 <ReadOnlyRow 
                                     obj={obj} 
                                     index={index}
-                                    handleEditClick={handleEditClick}
+                                    // handleEditClick={handleEditClick}
+                                    setEditRow={setEditRow}
                                 />
                             }
                         </Fragment>

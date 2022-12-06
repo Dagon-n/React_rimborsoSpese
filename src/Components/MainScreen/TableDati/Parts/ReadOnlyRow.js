@@ -1,7 +1,14 @@
-export default function ReadOnlyRow({obj, index, handleEditClick}) {
+export default function ReadOnlyRow({obj, index, setEditRow}) {
+
+    const funzioncina = (index) => {
+
+        setEditRow(index)
+        console.log(index)
+
+    }
 
     return (
-        <tr>
+        <tr className={index}>
             <td>{obj.data}</td>
             <td>{obj.importo} €</td>
             <td>{obj.ricevuta}</td>
@@ -10,7 +17,7 @@ export default function ReadOnlyRow({obj, index, handleEditClick}) {
                 <button 
                     type="button"
                     className="btnEditaRigaTable"
-                    onClick={(event) => handleEditClick(event, index)}
+                    onClick={() => funzioncina(index)}
                     >
                     edita
                 </button>

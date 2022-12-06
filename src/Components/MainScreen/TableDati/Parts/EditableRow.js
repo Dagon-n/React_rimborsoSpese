@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react"
 
-export default function EditableRow({index, setEditRow}) {
+export default function EditableRow({obj, index, setEditRow}) {
 
-    const [ data, setData ] = useState('')
-    const [ tipoSpesa, setTipoSpesa ] = useState('')
-    const [ ricevuta, setRicevuta ] = useState('')
-    const [ importo, setImporto ] = useState('')
+    const [ data, setData ] = useState(obj.data)
+    const [ tipoSpesa, setTipoSpesa ] = useState(obj.tipoSpesa)
+    const [ ricevuta, setRicevuta ] = useState(obj.ricevuta)
+    const [ importo, setImporto ] = useState(obj.importo)
 
     const handleDataChange = (e) => {
         setData(e.target.value)
@@ -24,10 +24,10 @@ export default function EditableRow({index, setEditRow}) {
 
         let nuovoDato = { '0': {data, tipoSpesa, ricevuta, importo} }
         let indexDaUsare = parseInt(index) + 1;
-        let URL = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + indexDaUsare;
+        let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + indexDaUsare;
         console.log(nuovoDato, '\n index: ', indexDaUsare )
 
-        fetch(URL, {
+        fetch(url, {
             method: 'PUT',
             headers: {
                 'Accept': 'Application/json',
@@ -65,6 +65,7 @@ export default function EditableRow({index, setEditRow}) {
                     required='required' 
                     name='data'
                     className='dataEditTable'
+                    defaultValue={obj.data}
                     onChange={ handleDataChange }
                 />
             </td>
@@ -72,32 +73,40 @@ export default function EditableRow({index, setEditRow}) {
                 <input 
                     type='text' 
                     required='required' 
-                    placeholder='inserisci un importo...'
                     name='importo'
                     className="importoEditTable"
+                    defaultValue={obj.importo}
                     onChange={ handleImportoChange }
                 />
             </td>
             <td>
                 <select 
                     onChange={ handleRicevutaChange } 
-                    defaultValue='scegli'
+                    defaultValue={obj.ricevuta}
                     className="selectEditTable"
-                    >
-                <option disabled value="scegli">Scegli</option>
+                >
+                    <option disabled value="scegli">Scegli</option>
                     <option value='si'>si</option>
                     <option value='no'>no</option>
                 </select>
             </td>
             <td>
-                <input 
-                    type='text' 
-                    required='required' 
-                    placeholder='inserisci un tipo di spesa...'
-                    name='tipoSpesa'
+                <select
+                    onChange={ handleTipoSpesaChange }
                     className="tipoSpesaEditTable"
-                    onChange={ handleTipoSpesaChange }>
-                </input>
+                    name="tipoSpesa"
+                    required='required'
+                    defaultValue={obj.tipoSpesa}
+                >
+                    <option disabled value='Scegli'>Scegli</option>
+                    <option value='taxi'>Taxi</option>
+                    <option value='treno'>Treno</option>
+                    <option value='autostrada'>Autostrada</option>
+                    <option value='benzina'>Benzina</option>
+                    <option value='pranzo'>Pranzo</option>
+                    <option value='cena'>Cena</option>
+                    <option value='hotel'>Hotel</option>
+                </select>
             </td>
             <td className="cellaPrimoBottone">
                 <button 

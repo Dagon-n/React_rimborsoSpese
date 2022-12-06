@@ -53,6 +53,7 @@ export default function TableDatiPiena(props) {
                         <Fragment key={index}>
                             { editRow === index ? 
                                 <EditableRow
+                                    obj={obj}
                                     index={index}
                                     setEditRow={setEditRow}
                                 />

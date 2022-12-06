@@ -1,24 +1,41 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import ReadOnlyRow from './ReadOnlyRow'
 import EditableRow from './EditableRow'
 import './tableDatiPiena.css'
 
 export default function TableDatiPiena(props) {
 
-    const [ editFormData, setEditFormData ] = useState({
-        data: '',
-        importo: '',
-        ricevuta: '',
-        tipoSpesa: ''
-    })
-    const handleEditFormChange = (event) => {
-
+    const [ editRow, setEditRow ] = useState(null)
+    const handleEditClick = (event, index) => {
+        event.preventDefault()
+        setEditRow(index)
     }
 
-    const [ editRow, setEditRow ] = useState(null)
-    const handleEditClick = (event, obj) => {
-        event.preventDefault()
-        setEditRow(obj.id)
+    const [ dati, setDati ] = useState([])
+    useEffect( ()=>{
+        const spese = []
+        props.spese.map((x) => spese.push(x[0]))
+        setDati(spese)
+    }, [] )
+    console.log(dati)
+
+    const [order, setOrder] = useState('ASC')
+    const sorting = (col) => {
+        if(order === 'ASC') {
+            const sorted = [...dati].sort((a, b) => 
+            a[col] > b[col] ? 1 : -1
+            )
+            setDati(sorted);
+            setOrder('DSC');
+        }
+        if(order === 'DSC') {
+            const sorted = [...dati].sort((a, b) => 
+            a[col] < b[col] ? 1 : -1
+            )
+            setDati(sorted);
+            setOrder('ASC');
+        }
+        console.log(order)
     }
 
     return (
@@ -26,28 +43,28 @@ export default function TableDatiPiena(props) {
         <table className="mainTable">
             <thead>
                 <tr>
-                    <th>Data</th>
-                    <th>Importo</th>
-                    <th>Ricevuta</th>
-                    <th>Tipo di Spesa</th>
+                    <th onClick={()=>{sorting("data")}}>Data</th>
+                    <th onClick={()=>{sorting("importo")}}>Importo</th>
+                    <th onClick={()=>{sorting("ricevuta")}}>Ricevuta</th>
+                    <th onClick={()=>{sorting("tipoSpesa")}}>Tipo di Spesa</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {props.spese.map((obj) => {
+                {dati.map((obj, index) => {
                     return(
-                        <Fragment>
-                            { editRow === obj.id ? 
+                        <Fragment key={index}>
+                            { editRow === {index} ? 
                                 <EditableRow 
-                                    key={obj.id} 
                                     obj={obj}
+                                    index={index}
                                     setEditRow={setEditRow}
                                 />
                                 :
                                 <ReadOnlyRow 
-                                    key={obj.id} 
                                     obj={obj} 
+                                    index={index}
                                     handleEditClick={handleEditClick}
                                 />
                             }

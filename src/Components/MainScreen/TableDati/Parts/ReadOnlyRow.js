@@ -1,16 +1,16 @@
-export default function ReadOnlyRow({obj, handleEditClick}) {
+export default function ReadOnlyRow({obj, index, handleEditClick}) {
 
     return (
         <tr>
-            <td>{obj[0].data}</td>
-            <td>{obj[0].importo} €</td>
-            <td>{obj[0].ricevuta}</td>
-            <td>{obj[0].tipoSpesa}</td>
+            <td>{obj.data}</td>
+            <td>{obj.importo} €</td>
+            <td>{obj.ricevuta}</td>
+            <td>{obj.tipoSpesa}</td>
             <td>
                 <button 
                     type="button"
                     className="btnEditaRigaTable"
-                    onClick={(event) => handleEditClick(event, obj)}
+                    onClick={(event) => handleEditClick(event, index)}
                     >
                     edita
                 </button>

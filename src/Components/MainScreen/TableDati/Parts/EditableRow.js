@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function EditableRow({setEditRow}) {
+export default function EditableRow({index, setEditRow}) {
 
     const [ data, setData ] = useState('')
     const [ tipoSpesa, setTipoSpesa ] = useState('')
@@ -20,15 +20,26 @@ export default function EditableRow({setEditRow}) {
         setImporto(e.target.value)
     }
 
-    const handlerDatiNuovi = (event, setEditRow) => {
+    const handlerDatiNuovi = (index, setEditRow) => {
 
-        event.preventDefault()
-        console.log(
-            'data:', data,'\n',
-            'tipoSpesa', tipoSpesa,'\n', 
-            'ricevuta', ricevuta,'\n', 
-            'importo', importo, '\n'
-            )
+        let nuovoDato = { '0': {data, tipoSpesa, ricevuta, importo} }
+        let indexDaUsare = parseInt(index) + 1;
+        let URL = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + indexDaUsare;
+        console.log(nuovoDato, '\n index: ', indexDaUsare )
+
+        fetch(URL, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'Application/json',
+                'Content-Type': 'Application/json'
+            },
+            body: JSON.stringify(nuovoDato)
+        }).then((result) => {
+            result.json().then((resp) => {
+                console.log(resp)
+            })
+        })
+
         setEditRow(null)
     
     }
@@ -41,7 +52,7 @@ export default function EditableRow({setEditRow}) {
             'tipoSpesa', tipoSpesa,'\n', 
             'ricevuta', ricevuta,'\n', 
             'importo', importo, '\n'
-        )
+            )
         setEditRow(null);
 
     }
@@ -92,7 +103,7 @@ export default function EditableRow({setEditRow}) {
                 <button 
                     type="button"
                     className="btnSalvaRigaTable"
-                    onClick={(event) => handlerDatiNuovi(event, setEditRow)}
+                    onClick={() => handlerDatiNuovi(index, setEditRow)}
                     >
                     salva
                 </button>

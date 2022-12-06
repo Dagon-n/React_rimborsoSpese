@@ -1,5 +1,4 @@
 import { useState } from "react"
-import './editTableRow.css'
 
 export default function EditableRow({setEditRow}) {
 
@@ -89,7 +88,7 @@ export default function EditableRow({setEditRow}) {
                     onChange={ handleTipoSpesaChange }>
                 </input>
             </td>
-            <td>
+            <td className="cellaPrimoBottone">
                 <button 
                     type="button"
                     className="btnSalvaRigaTable"
@@ -98,7 +97,7 @@ export default function EditableRow({setEditRow}) {
                     salva
                 </button>
             </td>
-            <td>
+            <td className="cellaSecondoBottone">
                 <button 
                     type="button"
                     className="btnAnnullaRigaTable"

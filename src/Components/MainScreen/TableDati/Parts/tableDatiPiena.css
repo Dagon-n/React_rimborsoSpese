@@ -18,6 +18,11 @@
     cursor: pointer;
 }
 
+/* ultime due celle header tabella */
+th.cellaPrimoBottone, th.cellaSecondoBottone {
+    background-color: transparent;
+}
+
 .mainTable td, .mainTable th {
     border: 3px solid rgba(248,249,249,255);
     border-radius: 15px;
@@ -25,7 +30,7 @@
 
 .mainTable td {
     background-color: white;
-    padding: 15px 20px;
+    padding: 10px 5px;
 }
 
 .rigaTotale > td {

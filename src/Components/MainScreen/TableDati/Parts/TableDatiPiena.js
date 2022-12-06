@@ -2,17 +2,13 @@ import React, { Fragment, useState, useEffect } from 'react'
 import ReadOnlyRow from './ReadOnlyRow'
 import EditableRow from './EditableRow'
 import './tableDatiPiena.css'
+import './editTableRow.css'
 
 export default function TableDatiPiena(props) {
 
     const [ editRow, setEditRow ] = useState(null)
-    const handleEditClick = (event, index) => {
-        event.preventDefault()
-        console.log('riga premuta ->', (index))
-        console.log(editRow)
-    }
-
     const [ dati, setDati ] = useState([])
+
     useEffect( ()=>{
         const spese = []
         props.spese.map((x) => spese.push(x[0]))
@@ -47,8 +43,8 @@ export default function TableDatiPiena(props) {
                     <th onClick={()=>{sorting("importo")}}>Importo</th>
                     <th onClick={()=>{sorting("ricevuta")}}>Ricevuta</th>
                     <th onClick={()=>{sorting("tipoSpesa")}}>Tipo di Spesa</th>
-                    <th></th>
-                    <th></th>
+                    <th className='cellaPrimoBottone'></th>
+                    <th className='cellaSecondoBottone'></th>
                 </tr>
             </thead>
             <tbody>
@@ -64,7 +60,6 @@ export default function TableDatiPiena(props) {
                                 <ReadOnlyRow 
                                     obj={obj} 
                                     index={index}
-                                    // handleEditClick={handleEditClick}
                                     setEditRow={setEditRow}
                                 />
                             }

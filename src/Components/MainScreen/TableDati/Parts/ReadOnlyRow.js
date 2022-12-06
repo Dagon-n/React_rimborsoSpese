@@ -1,28 +1,29 @@
 export default function ReadOnlyRow({obj, index, setEditRow}) {
 
-    const funzioncina = (index) => {
-
-        setEditRow(index)
-        console.log(index)
-
-    }
-
     return (
         <tr className={index}>
             <td>{obj.data}</td>
             <td>{obj.importo} €</td>
             <td>{obj.ricevuta}</td>
             <td>{obj.tipoSpesa}</td>
-            <td>
+            <td className="cellaPrimoBottone">
                 <button 
                     type="button"
                     className="btnEditaRigaTable"
-                    onClick={() => funzioncina(index)}
+                    onClick={() => setEditRow(index)}
                     >
                     edita
                 </button>
             </td>
-            <td>/</td>
+            <td className="cellaSecondoBottone">
+                <button 
+                    type="button"
+                    className="btnEliminaRiga"
+                    onClick={ ()=>{alert('riga eliminata!')} }
+                    >
+                    elimina
+                </button>
+            </td>
         </tr>
     )
 

@@ -3,6 +3,9 @@
 // import MainScreen from './Components/MainScreen/MainScreen'
 // import { ScreenStatusContext } from './Context/ScreenStatusContext';
 
+import FormLoginGiusto from './Parts/FormLoginGiusto';
+import FormLoginErrato from './Parts/FormLoginErrato';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './login.css'
@@ -24,7 +27,7 @@ export default function Login() {
           fetchData()
     }, [])
 
-    const handleNomeLogin = (e) => {
+    const handlerNomeLogin = (e) => {
         setNome(e.target.value)
     }
 
@@ -37,10 +40,10 @@ export default function Login() {
         console.log('nome: ', nome, '\npassword: ', password)
         const daControllare = usersDB.filter( obj => obj.nome === nome )[0]
         const passwordOriginale = daControllare.password
-        console.log(passwordOriginale)
+        console.log('password giusta:\n', passwordOriginale)
         if(password === passwordOriginale) {
-            alert('my man!')
             setError(false)
+            alert('dati corretti!')
         }else{
             setError(true)
         }
@@ -55,19 +58,23 @@ export default function Login() {
         <div className='containerFormLogin'>
             <form className='formLogin'> 
                 <div className='titoloLogin'>Accedi</div>
-                { error && <div className='divErrore'>Nome o Password errati!</div> }       
-                { usersDB ?
-                    <select className='selectLogin' defaultValue='scegli' onChange={ handleNomeLogin }>
-                        <option disabled value='scegli'>Scegli..</option>
-                        {usersDB.map( x => <option key={x.id}>{x.nome}</option>)}
-                    </select>
+                    { error === false ? 
+                        <FormLoginGiusto
+                        usersDB={ usersDB } 
+                        handlerNomeLogin={ handlerNomeLogin } 
+                        handlerPasswordLogin={ handlerPasswordLogin } 
+                    />
                 :
-                    'Loading...'
+                    <FormLoginErrato
+                        usersDB={ usersDB } 
+                        handlerNomeLogin={ handlerNomeLogin }
+                        handlerPasswordLogin={ handlerPasswordLogin }
+                    />
                 }
-                <input type='text' className='passwordLogin' placeholder='password...' onChange={ handlerPasswordLogin } />
                 <input type='submit' className='btnSubmitLogin' onClick={ handlerSubmitLogin } />
             </form>
         </div>
+        
     )
 
     // return (

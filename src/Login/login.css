@@ -16,16 +16,8 @@
     margin-bottom: 5%;
 }
 
-.selectLogin {
-    width: 100%;
-}
-
 .titoloLogin {
     font-size: 30px;
-}
-
-.passwordLogin {
-    width: 98.5%;
 }
 
 .btnSubmitLogin {
@@ -36,6 +28,30 @@
     cursor: pointer;
 }
 
-.divErrore {
+/* Form input giusti */
+.selectLogin {
+    width: 100%;
+}
+
+.passwordLogin {
+    width: 98.5%;
+}
+
+
+/* Form input errori */
+.messaggioErrore {
     color: red;
+    font-weight: bold;
+}
+
+.selectLoginErrato {
+    width: 100%;
+    border-width: 2px;
+    border-color: red;
+}
+
+.passwordLoginErrato {
+    width: 98.5%;
+    border-width: 2px;
+    border-color: red;
 }

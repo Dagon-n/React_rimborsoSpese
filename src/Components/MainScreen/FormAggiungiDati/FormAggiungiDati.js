@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react'
 import { ScreenStatusContext } from '../../../Context/ScreenStatusContext'
+import { nanoid } from 'nanoid'
 
 import FormTitle from './Parts/FormTitle'
 import FormData from './Parts/FormData'
@@ -34,7 +35,7 @@ export default function FormAggiungiDati(props) {
     async function handleSubmit (e) {
         e.preventDefault()
         console.log('data: ' + data, '\ntipoSpesa: ' + tipoSpesa, '\nricevuta: ' + ricevuta, '\nimporto: ' + importo)
-        let spesa = [{'data':data, 'tipoSpesa':tipoSpesa, 'ricevuta':ricevuta, 'importo':importo}];
+        let spesa = [{'data':data, 'tipoSpesa':tipoSpesa, 'ricevuta':ricevuta, 'importo':importo, 'id':nanoid()}];
 
         let response = await fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese', {
             method: 'POST',
@@ -43,9 +44,7 @@ export default function FormAggiungiDati(props) {
             },
             body: JSON.stringify(spesa)
         });
-
         let result = await response.json()
-        console.log(result)
 
         setScreenState('tableDati')
     }

@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
-export default function EditableRow({obj, index, setEditRow}) {
+export default function EditableRow({obj, id, datiRaw, setEditRow}) {
 
     const [ data, setData ] = useState(obj.data)
     const [ tipoSpesa, setTipoSpesa ] = useState(obj.tipoSpesa)
     const [ ricevuta, setRicevuta ] = useState(obj.ricevuta)
     const [ importo, setImporto ] = useState(obj.importo)
+    // const [ id, setId ] = useState(obj.id)
 
     const handleDataChange = (e) => {
         setData(e.target.value)
@@ -20,12 +21,12 @@ export default function EditableRow({obj, index, setEditRow}) {
         setImporto(e.target.value)
     }
 
-    const handlerDatiNuovi = (index, setEditRow) => {
+    const handlerDatiNuovi = (id, setEditRow) => {
 
-        let nuovoDato = { '0': {data, tipoSpesa, ricevuta, importo} }
-        let indexDaUsare = parseInt(index) + 1;
-        let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + indexDaUsare;
-        console.log(nuovoDato, '\n index: ', indexDaUsare )
+        let nuovoDato = { '0': {data, tipoSpesa, ricevuta, importo, id} }
+        let selezionatoreOggetto = datiRaw.filter( obj => obj[0].id === id )
+        let idOggettoDaEliminare = selezionatoreOggetto[0].id;
+        let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + idOggettoDaEliminare;
 
         fetch(url, {
             method: 'PUT',
@@ -34,11 +35,12 @@ export default function EditableRow({obj, index, setEditRow}) {
                 'Content-Type': 'Application/json'
             },
             body: JSON.stringify(nuovoDato)
-        }).then((result) => {
-            result.json().then((resp) => {
-                console.log(resp)
-            })
         })
+        .then(response => response.json())
+        .then((json) => {
+            console.warn('PUT fetch done!!\n', json)
+        })
+        .catch(error => error);
 
         setEditRow(null)
     
@@ -47,12 +49,7 @@ export default function EditableRow({obj, index, setEditRow}) {
     const annullaEdit = (event, setEditRow) => {
 
         event.preventDefault()
-        console.log(
-            'data:', data,'\n',
-            'tipoSpesa', tipoSpesa,'\n', 
-            'ricevuta', ricevuta,'\n', 
-            'importo', importo, '\n'
-            )
+        console.log('edit annullato!')
         setEditRow(null);
 
     }
@@ -112,7 +109,7 @@ export default function EditableRow({obj, index, setEditRow}) {
                 <button 
                     type="button"
                     className="btnSalvaRigaTable"
-                    onClick={() => handlerDatiNuovi(index, setEditRow)}
+                    onClick={() => handlerDatiNuovi(id, setEditRow)}
                     >
                     salva
                 </button>

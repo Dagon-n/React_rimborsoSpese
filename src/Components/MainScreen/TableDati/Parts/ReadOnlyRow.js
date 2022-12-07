@@ -1,17 +1,24 @@
-export default function ReadOnlyRow({obj, index, setEditRow}) {
+export default function ReadOnlyRow({obj, id, datiRaw, setEditRow}) {
 
-    const eliminaRiga = (index) => {
+    const eliminaRiga = (id) => {
 
-        let indexDaUsare = parseInt(index) + 1;
-        let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + indexDaUsare;
+        let selezionatoreOggetto = datiRaw.filter( obj => obj[0].id === id )
+        let idOggettoDaEliminare = selezionatoreOggetto[0].id
+        let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + idOggettoDaEliminare;
 
-        fetch(url, { method: 'DELETE' })
-        // .then(console.log(this))
+        fetch(url, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then((json) => {
+            console.log('DELETE fetch done!!\n', json)
+        })
+        .catch(error => error);
 
     }
 
     return (
-        <tr className={index}>
+        <tr className={id}>
             <td>{obj.data}</td>
             <td>{obj.importo} €</td>
             <td>{obj.ricevuta}</td>
@@ -20,7 +27,7 @@ export default function ReadOnlyRow({obj, index, setEditRow}) {
                 <button 
                     type="button"
                     className="btnEditaRigaTable"
-                    onClick={() => setEditRow(index)}
+                    onClick={() => setEditRow(id)}
                     >
                     edita
                 </button>
@@ -29,7 +36,7 @@ export default function ReadOnlyRow({obj, index, setEditRow}) {
                 <button 
                     type="button"
                     className="btnEliminaRiga"
-                    onClick={ ()=>{eliminaRiga(index)} }
+                    onClick={ ()=>{eliminaRiga(id)} }
                     >
                     elimina
                 </button>

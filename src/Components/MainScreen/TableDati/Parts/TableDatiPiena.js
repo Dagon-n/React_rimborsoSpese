@@ -7,7 +7,14 @@ import './editTableRow.css'
 export default function TableDatiPiena(props) {
 
     const [ editRow, setEditRow ] = useState(null)
+    const [ datiRaw, setDatiRaw ] = useState([])
     const [ dati, setDati ] = useState([])
+
+    useEffect( ()=>{
+        const speseRaw = []
+        props.spese.map((x) => speseRaw.push(x))
+        setDatiRaw(speseRaw)
+    }, [] )
 
     useEffect( ()=>{
         const spese = []
@@ -48,19 +55,21 @@ export default function TableDatiPiena(props) {
                 </tr>
             </thead>
             <tbody>
-                {dati.map((obj, index) => {
+                {dati.map((obj) => {
                     return(
-                        <Fragment key={index}>
-                            { editRow === index ? 
+                        <Fragment key={obj.id}>
+                            { editRow === obj.id ? 
                                 <EditableRow
                                     obj={obj}
-                                    index={index}
+                                    id={obj.id}
+                                    datiRaw={datiRaw}
                                     setEditRow={setEditRow}
                                 />
                                 :
                                 <ReadOnlyRow 
                                     obj={obj} 
-                                    index={index}
+                                    id={obj.id}
+                                    datiRaw={datiRaw}
                                     setEditRow={setEditRow}
                                 />
                             }

@@ -1,21 +1,23 @@
-// import NavMenu from './Components/NavMenu/NavMenu';
-// import Header from './Components/Header/Header';
-// import MainScreen from './Components/MainScreen/MainScreen'
-// import { ScreenStatusContext } from './Context/ScreenStatusContext';
-
-import FormLoginGiusto from './Parts/FormLoginGiusto';
-import FormLoginErrato from './Parts/FormLoginErrato';
-
+import InputPasswordHandler from './Parts/InputPasswordHandler';
 import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import './login.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
     const [ usersDB, setUsersDB ] = useState([])
     const [ nome, setNome ] = useState('')
     const [ password, setPassword ] = useState('')
-    const [ error, setError ] = useState(false)
+
+    const [ classeSelect, setClasseSelect ] = useState('selectLogin')
+    const [ classePassword, setClassePassword ] = useState('passwordLogin')
+    const [ classeAlert, setClasseAlert ] = useState('messaggioErroreNo')
+
+    const [ passwordInputType, toggleIcon ] = InputPasswordHandler()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,20 +39,21 @@ export default function Login() {
 
     const handlerSubmitLogin = (e) => {
         e.preventDefault()
-        console.log('nome: ', nome, '\npassword: ', password)
         const daControllare = usersDB.filter( obj => obj.nome === nome )[0]
         const passwordOriginale = daControllare.password
-        console.log('password giusta:\n', passwordOriginale)
-        if(password === passwordOriginale) {
-            setError(false)
-            alert('dati corretti!')
+        console.warn('Inserita: ', password, '\nGiusta: ',passwordOriginale)
+        if(password === passwordOriginale){
+            setClasseSelect('selectLogin')
+            setClassePassword('passwordLogin')
+            setClasseAlert('messaggioErroreNo')
+            navigate('/spese')
         }else{
-            setError(true)
+            setClasseSelect('selectLoginErrato')
+            setClassePassword('passwordLoginErrato')
+            setClasseAlert('messaggioErroreSi')
         }
 
     }
-
-    const [ screenState, setScreenState ] = useState('formAggiungiDati')
 
     let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti';
 
@@ -58,33 +61,23 @@ export default function Login() {
         <div className='containerFormLogin'>
             <form className='formLogin'> 
                 <div className='titoloLogin'>Accedi</div>
-                    { error === false ? 
-                        <FormLoginGiusto
-                        usersDB={ usersDB } 
-                        handlerNomeLogin={ handlerNomeLogin } 
-                        handlerPasswordLogin={ handlerPasswordLogin } 
-                    />
-                :
-                    <FormLoginErrato
-                        usersDB={ usersDB } 
-                        handlerNomeLogin={ handlerNomeLogin }
-                        handlerPasswordLogin={ handlerPasswordLogin }
-                    />
-                }
+                <div className={classeAlert}>Nome e/o Password errati!</div>
+                <div className='nomeSection'>
+                    <FontAwesomeIcon icon="user" />
+                    <select className={classeSelect} defaultValue='scegli' onChange={ handlerNomeLogin }>
+                        <option disabled value='scegli'>Scegli..</option>
+                        {usersDB.map( x => <option key={x.id}>{x.nome}</option>)}
+                    </select>
+                </div>
+                <div className='passwordSection'>
+                    <FontAwesomeIcon icon="key" />
+                    <input type={passwordInputType} className={classePassword} placeholder='password...' onChange={ handlerPasswordLogin } />
+                    <span>{toggleIcon}</span>
+                </div>
                 <input type='submit' className='btnSubmitLogin' onClick={ handlerSubmitLogin } />
             </form>
         </div>
         
     )
-
-    // return (
-    //     <div className='page'>
-    //         <NavMenu />
-    //         <ScreenStatusContext.Provider value={{ screenState, setScreenState }}>
-    //             <Header />
-    //             <MainScreen />
-    //         </ScreenStatusContext.Provider>
-    //     </div>
-    // );
 
 }

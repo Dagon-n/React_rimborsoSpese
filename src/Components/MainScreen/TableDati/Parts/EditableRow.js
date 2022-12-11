@@ -24,7 +24,8 @@ export default function EditableRow({obj, id, datiRaw, setEditRow}) {
     const handlerDatiNuovi = (id, setEditRow) => {
 
         let nuovoDato = { '0': {data, tipoSpesa, ricevuta, importo, id} }
-        let selezionatoreOggetto = datiRaw.filter( obj => obj[0].id === id )
+        let selezionatoreOggetto = datiRaw.filter( x => x[0].id === id )
+        console.log(selezionatoreOggetto)
         let idOggettoDaEliminare = selezionatoreOggetto[0].id;
         let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + idOggettoDaEliminare;
 

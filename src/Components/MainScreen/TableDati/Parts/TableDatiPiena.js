@@ -41,6 +41,8 @@ export default function TableDatiPiena(props) {
         console.log(order)
     }
 
+    console.log(datiRaw['0'])
+
     return (
         <>
         <table className="mainTable">

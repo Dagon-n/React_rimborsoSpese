@@ -28,30 +28,39 @@
     cursor: pointer;
 }
 
+.nomeSection {
+    background-color: rgb(0, 255, 0, 0.5);
+}
+
+.passwordSection {
+    background-color: rgb(0, 255, 0, 0.5);
+}
+
 /* Form input giusti */
 .selectLogin {
-    width: 100%;
 }
 
 .passwordLogin {
-    width: 98.5%;
+}
+
+.messaggioErroreNo{
+    display: none;
 }
 
 
 /* Form input errori */
-.messaggioErrore {
+.messaggioErroreSi {
+    display: block;
     color: red;
     font-weight: bold;
 }
 
 .selectLoginErrato {
-    width: 100%;
     border-width: 2px;
     border-color: red;
 }
 
 .passwordLoginErrato {
-    width: 98.5%;
     border-width: 2px;
     border-color: red;
 }

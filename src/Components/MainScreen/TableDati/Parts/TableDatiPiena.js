@@ -6,6 +6,7 @@ import './editTableRow.css'
 
 export default function TableDatiPiena(props) {
 
+    const [ logged, setLogged ] = useState(props.idUtenteLoggato)
     const [ editRow, setEditRow ] = useState(null)
     const [ datiRaw, setDatiRaw ] = useState([])
     const [ dati, setDati ] = useState([])
@@ -63,12 +64,14 @@ export default function TableDatiPiena(props) {
                                     obj={obj}
                                     datiRaw={datiRaw}
                                     setEditRow={setEditRow}
+                                    logged={logged}
                                 />
                                 :
                                 <ReadOnlyRow 
                                     obj={obj}
                                     datiRaw={datiRaw}
                                     setEditRow={setEditRow}
+                                    logged={logged}
                                 />
                             }
                         </Fragment>

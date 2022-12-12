@@ -32,12 +32,14 @@ export default function FormAggiungiDati(props) {
         setImporto(e.target.value)
     }
 
+    const idUtenteLoggato = props.idUtenteLoggato
     async function handleSubmit (e) {
         e.preventDefault()
         console.log('data: ' + data, '\ntipoSpesa: ' + tipoSpesa, '\nricevuta: ' + ricevuta, '\nimporto: ' + importo)
         let spesa = [{'data':data, 'tipoSpesa':tipoSpesa, 'ricevuta':ricevuta, 'importo':importo, 'id':nanoid()}];
+        let URL = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/' + idUtenteLoggato + '/spese'
 
-        let response = await fetch('https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese', {
+        let response = await fetch(URL, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8'

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
-export default function EditableRow({obj, datiRaw, setEditRow}) {
+export default function EditableRow({obj, datiRaw, setEditRow, logged}) {
 
     const [ data, setData ] = useState(obj.data)
     const [ tipoSpesa, setTipoSpesa ] = useState(obj.tipoSpesa)
@@ -26,7 +26,7 @@ export default function EditableRow({obj, datiRaw, setEditRow}) {
         let selezionatoreOggetto = datiRaw.filter( x => x[0].id === id )
         console.log(selezionatoreOggetto)
         let idOggettoDaEliminare = selezionatoreOggetto[0].id;
-        let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/1/spese/' + idOggettoDaEliminare;
+        let url = 'https://63480ebc0484786c6e90a61b.mockapi.io/Utenti/'+ logged + '/spese/' + idOggettoDaEliminare;
 
         fetch(url, {
             method: 'PUT',
@@ -43,7 +43,7 @@ export default function EditableRow({obj, datiRaw, setEditRow}) {
         .catch(error => error);
 
         setEditRow(null)
-    
+
     }
 
     const annullaEdit = (event, setEditRow) => {

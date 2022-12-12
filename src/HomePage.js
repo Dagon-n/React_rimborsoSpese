@@ -18,15 +18,12 @@ export default function Homepage() {
         setIdUtenteLoggato(location.state.idUtente)
     }, [])
 
-    console.log(nomeUtenteLoggato)
-    console.log(idUtenteLoggato)
-
     return (
         <div className='page'>
             <NavMenu />
             <ScreenStatusContext.Provider value={{ screenState, setScreenState }}>
                 <Header nomeUtenteLoggato={nomeUtenteLoggato} />
-                <MainScreen />
+                <MainScreen idUtenteLoggato={idUtenteLoggato} />
             </ScreenStatusContext.Provider>
         </div>
     )

@@ -65,14 +65,14 @@ export default function Login() {
                 <div className='titoloLogin'>Accedi</div>
                 <div className={classeAlert}>Nome e/o Password errati!</div>
                 <div className='nomeSection'>
-                    <FontAwesomeIcon icon="user" />
+                    <FontAwesomeIcon icon="user" className='userIcon'/>
                     <select className={classeSelect} defaultValue='scegli' onChange={ handlerNomeLogin }>
                         <option disabled value='scegli'>Scegli..</option>
                         {usersDB.map( x => <option key={x.id}>{x.nome}</option>)}
                     </select>
                 </div>
                 <div className='passwordSection'>
-                    <FontAwesomeIcon icon="key" />
+                    <FontAwesomeIcon icon="key" className='keyIcon'/>
                     <input type={passwordInputType} className={classePassword} placeholder='password...' onChange={ handlerPasswordLogin } />
                     <span>{toggleIcon}</span>
                 </div>

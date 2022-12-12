@@ -6,7 +6,7 @@
 .formAggiungiDati {
     background-color: rgb(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 40%;
+    width: 70%;
     margin: 0 auto;
     text-align: center;
     border-radius: 20px;
@@ -80,7 +80,7 @@
 .submitForm {
     font-size: 15px;
     border-radius: 50px;
-    width: 70px;
+    width: 50%;
     border: none;
     padding: 2% 3%;
     cursor: pointer;
@@ -89,4 +89,20 @@
 
 .submitForm:hover {
     background-color: rgb(0, 130, 0, 0.7);
+}
+
+@media (max-width: 900px) {
+
+    .formAggiungiDati {
+        width: 80%;
+    }
+
+} 
+
+@media (min-width: 1050px) {
+
+    .formAggiungiDati {
+        width: 50%;
+    }
+
 }

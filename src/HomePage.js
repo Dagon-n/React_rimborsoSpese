@@ -2,17 +2,30 @@ import NavMenu from './Components/NavMenu/NavMenu';
 import Header from './Components/Header/Header';
 import MainScreen from './Components/MainScreen/MainScreen'
 import { ScreenStatusContext } from './Context/ScreenStatusContext';
-import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function Homepage() {
 
     const [ screenState, setScreenState ] = useState('formAggiungiDati')
+    const [ nomeUtenteLoggato, setNomeUtenteLoggato ] = useState()
+    const [ idUtenteLoggato, setIdUtenteLoggato ] = useState()
+
+    let location = useLocation();
+
+    useEffect( ()=>{
+        setNomeUtenteLoggato(location.state.nome)
+        setIdUtenteLoggato(location.state.idUtente)
+    }, [])
+
+    console.log(nomeUtenteLoggato)
+    console.log(idUtenteLoggato)
 
     return (
         <div className='page'>
             <NavMenu />
             <ScreenStatusContext.Provider value={{ screenState, setScreenState }}>
-                <Header />
+                <Header nomeUtenteLoggato={nomeUtenteLoggato} />
                 <MainScreen />
             </ScreenStatusContext.Provider>
         </div>

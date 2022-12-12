@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import './login.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Login() {
 
@@ -40,13 +40,15 @@ export default function Login() {
     const handlerSubmitLogin = (e) => {
         e.preventDefault()
         const daControllare = usersDB.filter( obj => obj.nome === nome )[0]
+        const idUtente = daControllare.id;
         const passwordOriginale = daControllare.password
         console.warn('Inserita: ', password, '\nGiusta: ',passwordOriginale)
         if(password === passwordOriginale){
             setClasseSelect('selectLogin')
             setClassePassword('passwordLogin')
             setClasseAlert('messaggioErroreNo')
-            navigate('/spese')
+            /* cambia pagina */
+            navigate('/spese', { state: { nome, idUtente } })
         }else{
             setClasseSelect('selectLoginErrato')
             setClassePassword('passwordLoginErrato')

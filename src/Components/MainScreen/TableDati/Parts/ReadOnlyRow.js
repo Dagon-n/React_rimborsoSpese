@@ -1,6 +1,14 @@
-export default function ReadOnlyRow({obj, id, datiRaw, setEditRow}) {
+import { useState, useEffect } from "react"
 
-    const eliminaRiga = (id) => {
+export default function ReadOnlyRow({obj, datiRaw, setEditRow}) {
+
+    const [ refresh, doRefresh ] = useState(obj.id)
+    useEffect( ()=>{
+        console.log('refresh!')
+    }, [refresh] )
+    console.log(refresh)
+
+    const HandleEliminaRiga = (id) => {
 
         let selezionatoreOggetto = datiRaw.filter( obj => obj[0].id === id )
         let idOggettoDaEliminare = selezionatoreOggetto[0].id
@@ -18,7 +26,7 @@ export default function ReadOnlyRow({obj, id, datiRaw, setEditRow}) {
     }
 
     return (
-        <tr className={id}>
+        <tr className={obj.id}>
             <td>{obj.data}</td>
             <td>{obj.importo} €</td>
             <td>{obj.ricevuta}</td>
@@ -27,7 +35,7 @@ export default function ReadOnlyRow({obj, id, datiRaw, setEditRow}) {
                 <button 
                     type="button"
                     className="btnEditaRigaTable"
-                    onClick={() => setEditRow(id)}
+                    onClick={() => setEditRow(obj.id)}
                     >
                     edita
                 </button>
@@ -36,7 +44,7 @@ export default function ReadOnlyRow({obj, id, datiRaw, setEditRow}) {
                 <button 
                     type="button"
                     className="btnEliminaRiga"
-                    onClick={ ()=>{eliminaRiga(id)} }
+                    onClick={ ()=>{HandleEliminaRiga(obj.id)} }
                     >
                     elimina
                 </button>

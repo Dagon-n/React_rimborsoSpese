@@ -41,8 +41,6 @@ export default function TableDatiPiena(props) {
         console.log(order)
     }
 
-    console.log(datiRaw['0'])
-
     return (
         <>
         <table className="mainTable">
@@ -63,14 +61,12 @@ export default function TableDatiPiena(props) {
                             { editRow === obj.id ? 
                                 <EditableRow
                                     obj={obj}
-                                    id={obj.id}
                                     datiRaw={datiRaw}
                                     setEditRow={setEditRow}
                                 />
                                 :
                                 <ReadOnlyRow 
-                                    obj={obj} 
-                                    id={obj.id}
+                                    obj={obj}
                                     datiRaw={datiRaw}
                                     setEditRow={setEditRow}
                                 />

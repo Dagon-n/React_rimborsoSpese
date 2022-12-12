@@ -1,12 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function EditableRow({obj, id, datiRaw, setEditRow}) {
+export default function EditableRow({obj, datiRaw, setEditRow}) {
 
     const [ data, setData ] = useState(obj.data)
     const [ tipoSpesa, setTipoSpesa ] = useState(obj.tipoSpesa)
     const [ ricevuta, setRicevuta ] = useState(obj.ricevuta)
     const [ importo, setImporto ] = useState(obj.importo)
-    // const [ id, setId ] = useState(obj.id)
 
     const handleDataChange = (e) => {
         setData(e.target.value)
@@ -110,7 +109,7 @@ export default function EditableRow({obj, id, datiRaw, setEditRow}) {
                 <button 
                     type="button"
                     className="btnSalvaRigaTable"
-                    onClick={() => handlerDatiNuovi(id, setEditRow)}
+                    onClick={() => handlerDatiNuovi(obj.id, setEditRow)}
                     >
                     salva
                 </button>

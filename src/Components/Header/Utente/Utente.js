@@ -1,9 +1,9 @@
 import './Utente.css'
 
-export default function Utente() {
+export default function Utente(props) {
 
     return(
-        <div className='nomeUtente'> Filippo Vallarino </div>
+        <div className='containerNomeUtente'> Benvenuto/a, <span className='nomeUtenteLoggato'>{props.nomeUtenteLoggato}!</span> </div>
     );
 
 }

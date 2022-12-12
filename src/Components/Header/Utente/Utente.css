@@ -1,5 +1,8 @@
-.nomeUtente {
+.containerNomeUtente {
     margin-left: 100px;
-    font-weight: bold;
     display: inline;
+}
+
+.nomeUtenteLoggato {
+    font-weight: bold;
 }

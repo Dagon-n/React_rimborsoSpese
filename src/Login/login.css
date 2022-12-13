@@ -119,8 +119,21 @@
 
 @media (min-width: 1000px) {
 
-    .keyIcon {
-        color: red;
+    .containerFormLogin {
+        margin: 5% auto;
+        height: 100%;
+        padding: 0;
+    }
+
+    .formLogin {
+        margin: 0 auto;
+        width: 50%;
+        height: 60%;
+        padding: 5%;
+    }
+
+    .formLogin > * {
+        margin-bottom: 5%;
     }
 
 }
